@@ -1,5 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Input from "../components/Input";
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import Input from '../components/Input/Input';
 
 export default {
   title: 'Input',
@@ -16,4 +16,4 @@ export const SmallInput = Template.bind({});
 SmallInput.args = {
   label: 'Name',
   id: 'name',
-}
+};
