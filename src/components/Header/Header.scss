@@ -1,0 +1,15 @@
+a {
+  text-decoration: none;
+}
+
+.tab {
+  border: 2px solid lightcoral;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  color: lightcoral;
+}
+
+.active {
+  background-color: lightsalmon;
+  color: white;
+}
