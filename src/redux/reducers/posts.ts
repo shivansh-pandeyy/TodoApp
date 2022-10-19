@@ -1,6 +1,7 @@
 import produce from 'immer';
 import {
   ActionDefTypes,
+  CommentType,
   PostObj,
   PostsInitialState,
 } from './../constants/posts';
@@ -20,7 +21,12 @@ interface ActionPostsListEnd {
   payload: PostObj[];
 }
 
-type ActionDef = ActionPostsListStart | ActionPostsListEnd;
+interface ActionAddComment {
+  type: ActionDefTypes.ADD_COMMENT_TO_POST;
+  payload: CommentType;
+}
+
+type ActionDef = ActionPostsListStart | ActionPostsListEnd | ActionAddComment;
 
 const postReducer = (state = INITIAL_STATE, action: ActionDef) => {
   return produce(state, (draftState) => {
@@ -32,6 +38,17 @@ const postReducer = (state = INITIAL_STATE, action: ActionDef) => {
       case ActionDefTypes.GET_POSTS_LIST:
         draftState.isProcessing = false;
         draftState.info = payload;
+        break;
+      case ActionDefTypes.ADD_COMMENT_TO_POST:
+        draftState.info.filter((post) => {
+          if (post.id === payload.postId) {
+            if (post.comments && post.comments.length > 0) {
+              post.comments.push(payload);
+            } else {
+              post.comments = [payload];
+            }
+          }
+        });
         break;
       default:
         break;

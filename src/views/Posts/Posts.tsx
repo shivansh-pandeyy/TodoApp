@@ -1,6 +1,7 @@
 import { Box } from '@mui/system';
-import React, { useEffect } from 'react';
-import { useLocation, useParams } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import { getUser } from '../../api/users';
 import Header from '../../components/Header/Header';
 import PostCard from '../../components/PostCard/PostCard';
 import { getPostsList } from '../../redux/actions/posts';
@@ -8,14 +9,25 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 const Posts = () => {
   const params = useParams();
-  const { state } = useLocation();
+  const [username, setUsername] = useState<string>('');
+  const [userEmail, setEmail] = useState<string>('');
+  const navigate = useNavigate();
   const { info, isProcessing } = useAppSelector((state) => state.postReducer);
   const dispatch = useAppDispatch();
+
+  const getUserDetails = async () => {
+    if (params.id) {
+      const res = await getUser(params.id);
+      setEmail(res.data.email);
+      setUsername(res.data.name);
+    }
+  };
 
   useEffect(() => {
     if (params.id) {
       dispatch(getPostsList(params.id));
     }
+    getUserDetails();
   }, []);
 
   return (
@@ -39,6 +51,10 @@ const Posts = () => {
             to: `/users/${params.id}/todos`,
           },
         ]}
+        addBtn
+        btnAction={() => {
+          navigate(`/users/${params.id}/createPost`);
+        }}
       />
       {isProcessing ? (
         <h2>Loading...</h2>
@@ -51,7 +67,9 @@ const Posts = () => {
                   key={post.id}
                   title={post.title}
                   body={post.body}
-                  name={state.name}
+                  name={username}
+                  email={userEmail}
+                  post={post}
                 />
               );
             })}

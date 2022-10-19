@@ -1,4 +1,8 @@
-import { getPostsList as getPostsListApi } from '../../api/posts';
+import { PostPayloadType, CommentType } from './../constants/posts';
+import {
+  getPostsList as getPostsListApi,
+  createPost as createPostApi,
+} from '../../api/posts';
 import { ActionDefTypes } from '../constants/posts';
 import { AppDispatch } from '../store';
 
@@ -11,3 +15,21 @@ export const getPostsList = (id: string) => async (dispatch: AppDispatch) => {
     console.log(error);
   }
 };
+
+export const createPost = async (
+  id: string,
+  payload: PostPayloadType,
+  callback: () => void
+) => {
+  try {
+    await createPostApi(id, payload);
+    callback();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addCommentToPost =
+  (payload: CommentType) => async (dispatch: AppDispatch) => {
+    dispatch({ type: ActionDefTypes.ADD_COMMENT_TO_POST, payload });
+  };
