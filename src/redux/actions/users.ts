@@ -17,9 +17,9 @@ export const addUser = async (payload: UserDef) => {
 
 export const getUsersList = () => async (dispatch: AppDispatch) => {
   try {
-    dispatch({ type: ActionDefTypes.GET_USERS_LIST_START });
+    dispatch({ type: ActionDefTypes.IS_USERS_LIST_LOADING });
     const res = await getUsersListApi();
-    dispatch({ type: ActionDefTypes.GET_USERS_LIST_END, payload: res.data });
+    dispatch({ type: ActionDefTypes.GET_USERS_LIST, payload: res.data });
   } catch (error) {
     console.log(error);
   }
