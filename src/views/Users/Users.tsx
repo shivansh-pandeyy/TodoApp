@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
-import UserCard from '../../components/UserCard';
+import CardComponent from '../../components/CardComponent/CardComponent';
 import Placeholder from '../../assets/images/user-placeholder.png';
 import Add from '../../assets/images/add1.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -43,7 +43,7 @@ const Users = (): JSX.Element => {
               info.length > 0 &&
               info.map((item) => {
                 return (
-                  <UserCard
+                  <CardComponent
                     key={item.id}
                     image={Placeholder}
                     name={item.name}
@@ -60,7 +60,7 @@ const Users = (): JSX.Element => {
                 );
               })}
             <Link to="/createUser">
-              <UserCard image={Add} showMenu={false} />
+              <CardComponent image={Add} showMenu={false} />
             </Link>
           </Stack>
         </>
