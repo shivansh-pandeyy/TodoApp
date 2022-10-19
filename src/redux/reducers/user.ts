@@ -23,7 +23,7 @@ interface ActionUserListEnd {
 type ActionDef = ActionUserListStart | ActionUserListEnd;
 
 const userReducer = (state = INITIAL_STATE, action: ActionDef) => {
-  produce(state, (draftState) => {
+  return produce(state, (draftState) => {
     const { type, payload } = action;
     switch (type) {
       case ActionDefTypes.IS_USERS_LIST_LOADING:

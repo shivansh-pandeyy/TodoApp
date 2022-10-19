@@ -44,9 +44,8 @@ const Posts = () => {
         <h2>Loading...</h2>
       ) : (
         <>
-          {info &&
-            info.length > 0 &&
-            info.map((post) => {
+          {!!info?.length &&
+            info?.map((post) => {
               return (
                 <PostCard
                   key={post.id}
