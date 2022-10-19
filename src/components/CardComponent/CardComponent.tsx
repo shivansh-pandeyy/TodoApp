@@ -58,9 +58,8 @@ const CardComponent = ({
                 <MoreVertIcon />
               </IconButton>
               <Menu anchorEl={anchorEl} onClose={handleClose} open={open}>
-                {menuWithAction &&
-                  menuWithAction.length > 0 &&
-                  menuWithAction.map((menuItem) => (
+                {!!menuWithAction?.length &&
+                  menuWithAction?.map((menuItem) => (
                     <MenuItem
                       onClick={() => {
                         menuItem.action();

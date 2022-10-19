@@ -1,6 +1,6 @@
 export enum ActionDefTypes {
-  GET_USERS_LIST_START = 'GET_USERS_LIST_START',
-  GET_USERS_LIST_END = 'GET_USERS_LIST_END',
+  IS_USERS_LIST_LOADING = 'IS_USERS_LIST_LOADING',
+  GET_USERS_LIST = 'GET_USERS_LIST',
 }
 
 export interface UserListInitialStateType {

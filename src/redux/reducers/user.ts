@@ -11,32 +11,32 @@ const INITIAL_STATE: UserListInitialStateType = {
 };
 
 interface ActionUserListStart {
-  type: ActionDefTypes.GET_USERS_LIST_START;
+  type: ActionDefTypes.IS_USERS_LIST_LOADING;
   payload?: string;
 }
 
 interface ActionUserListEnd {
-  type: ActionDefTypes.GET_USERS_LIST_END;
+  type: ActionDefTypes.GET_USERS_LIST;
   payload: UserListEndObj[];
 }
 
 type ActionDef = ActionUserListStart | ActionUserListEnd;
 
 const userReducer = (state = INITIAL_STATE, action: ActionDef) => {
-  const { type, payload } = action;
-  switch (type) {
-    case ActionDefTypes.GET_USERS_LIST_START:
-      return produce(state, (draftState) => {
+  produce(state, (draftState) => {
+    const { type, payload } = action;
+    switch (type) {
+      case ActionDefTypes.IS_USERS_LIST_LOADING:
         draftState.isProcessing = true;
-      });
-    case ActionDefTypes.GET_USERS_LIST_END:
-      return produce(state, (draftState) => {
+        break;
+      case ActionDefTypes.GET_USERS_LIST:
         draftState.isProcessing = false;
         draftState.info = payload;
-      });
-    default:
-      return state;
-  }
+        break;
+      default:
+        break;
+    }
+  });
 };
 
 export default userReducer;
