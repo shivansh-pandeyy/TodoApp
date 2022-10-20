@@ -34,6 +34,7 @@ const Header = ({ list, addBtn, btnAction }: HeaderPropsType): JSX.Element => {
               className={`tab ${tabItem.active && 'active'}`}
               component={Link}
               to={tabItem.to}
+              sx={{ cursor: 'pointer' }}
             >
               {tabItem.label}
             </Box>
@@ -42,7 +43,7 @@ const Header = ({ list, addBtn, btnAction }: HeaderPropsType): JSX.Element => {
       {addBtn && (
         <Button
           onClick={btnAction}
-          sx={{ borderRadius: 60, marginLeft: 10 }}
+          sx={{ borderRadius: 60, marginLeft: { xs: 2, sm: 3, md: 10 } }}
           variant="outlined"
           startIcon={<AddIcon />}
         >
