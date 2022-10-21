@@ -35,7 +35,6 @@ const PostModal = ({
   };
 
   const addComment = () => {
-    console.log(cUser, cEmail);
     if (comment.trim().length === 0) return;
     const payload = {
       postId: post?.id,
@@ -79,7 +78,6 @@ const PostModal = ({
           <Button
             sx={{
               backgroundColor: 'lightblue',
-              // color: 'white',
               my: 2,
             }}
             onClick={addComment}
