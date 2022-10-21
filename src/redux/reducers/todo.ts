@@ -27,7 +27,7 @@ const todoReducer = (state = INITIAL_STATE, action: ActionDef) => {
         break;
       case ActionDefTypes.GET_TODOS_LIST:
         draftState.isProcessing = false;
-        draftState.info = payload;
+        draftState.info = [...draftState.info, ...payload];
         break;
       default:
         break;

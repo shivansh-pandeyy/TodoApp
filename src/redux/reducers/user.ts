@@ -31,7 +31,7 @@ const userReducer = (state = INITIAL_STATE, action: ActionDef) => {
         break;
       case ActionDefTypes.GET_USERS_LIST:
         draftState.isProcessing = false;
-        draftState.info = payload;
+        draftState.info = [...draftState.info, ...payload]; 
         break;
       default:
         break;

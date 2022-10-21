@@ -37,7 +37,7 @@ const postReducer = (state = INITIAL_STATE, action: ActionDef) => {
         break;
       case ActionDefTypes.GET_POSTS_LIST:
         draftState.isProcessing = false;
-        draftState.info = payload;
+        draftState.info = [...draftState.info, ...payload];
         break;
       case ActionDefTypes.ADD_COMMENT_TO_POST:
         draftState.info.filter((post) => {
