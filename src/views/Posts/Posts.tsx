@@ -11,6 +11,17 @@ const Posts = () => {
   const { state } = useLocation();
   const { info, isProcessing } = useAppSelector((state) => state.postReducer);
   const dispatch = useAppDispatch();
+  const menuList = [
+    {
+      label: 'Posts',
+      to: `/users/${params.id}/posts`,
+      active: true,
+    },
+    {
+      label: 'Todo',
+      to: `/users/${params.id}/todos`,
+    },
+  ];
 
   useEffect(() => {
     if (params.id) {
@@ -27,19 +38,7 @@ const Posts = () => {
         padding: 2,
       }}
     >
-      <Header
-        list={[
-          {
-            label: 'Posts',
-            to: `/users/${params.id}/posts`,
-            active: true,
-          },
-          {
-            label: 'Todo',
-            to: `/users/${params.id}/todos`,
-          },
-        ]}
-      />
+      <Header list={menuList} />
       {isProcessing ? (
         <h2>Loading...</h2>
       ) : (
