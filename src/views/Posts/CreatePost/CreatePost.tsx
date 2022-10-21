@@ -12,7 +12,7 @@ const validationSchema = Yup.object().shape({
   body: Yup.string().required('This field is required'),
 });
 
-const CreatePost = () => {
+const CreatePost = (): JSX.Element => {
   const navigate = useNavigate();
   const params = useParams();
   const initialValues = {

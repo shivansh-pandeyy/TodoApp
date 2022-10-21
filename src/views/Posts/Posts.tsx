@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 type GetUserDetails = () => Promise<void>;
 
-const Posts = () => {
+const Posts = (): JSX.Element => {
   const params = useParams();
   const [username, setUsername] = useState('');
   const [userEmail, setEmail] = useState('');
