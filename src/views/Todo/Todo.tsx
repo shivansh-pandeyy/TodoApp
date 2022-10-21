@@ -10,6 +10,17 @@ const Todo = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
   const { info, isProcessing } = useAppSelector((state) => state.todoReducer);
+  const listMenu = [
+    {
+      label: 'Posts',
+      to: `/users/${params.id}/posts`,
+    },
+    {
+      label: 'Todo',
+      to: `/users/${params.id}/todos`,
+      active: true,
+    },
+  ];
 
   useEffect(() => {
     if (params.id) {
@@ -26,19 +37,7 @@ const Todo = () => {
         padding: 2,
       }}
     >
-      <Header
-        list={[
-          {
-            label: 'Posts',
-            to: `/users/${params.id}/posts`,
-          },
-          {
-            label: 'Todo',
-            to: `/users/${params.id}/todos`,
-            active: true,
-          },
-        ]}
-      />
+      <Header list={listMenu} />
       {isProcessing ? (
         <h2>Loading...</h2>
       ) : (
