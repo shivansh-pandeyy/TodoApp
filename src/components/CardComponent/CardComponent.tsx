@@ -26,7 +26,7 @@ interface CardComponentProps {
   onClick?: () => void;
   children?: JSX.Element;
   sx?: SxProps;
-  title?: String;
+  title?: string;
 }
 
 const CardComponent = ({

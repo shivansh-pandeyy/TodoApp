@@ -7,15 +7,28 @@ import PostCard from '../../components/PostCard/PostCard';
 import { getPostsList } from '../../redux/actions/posts';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
+type GetUserDetails = () => Promise<void>;
+
 const Posts = () => {
   const params = useParams();
-  const [username, setUsername] = useState<string>('');
-  const [userEmail, setEmail] = useState<string>('');
+  const [username, setUsername] = useState('');
+  const [userEmail, setEmail] = useState('');
   const navigate = useNavigate();
   const { info, isProcessing } = useAppSelector((state) => state.postReducer);
   const dispatch = useAppDispatch();
+  const menuList = [
+    {
+      label: 'Posts',
+      to: `/users/${params.id}/posts`,
+      active: true,
+    },
+    {
+      label: 'Todo',
+      to: `/users/${params.id}/todos`,
+    },
+  ];
 
-  const getUserDetails = async () => {
+  const getUserDetails: GetUserDetails = async () => {
     if (params.id) {
       const res = await getUser(params.id);
       setEmail(res.data.email);
@@ -39,23 +52,7 @@ const Posts = () => {
         padding: 2,
       }}
     >
-      <Header
-        list={[
-          {
-            label: 'Posts',
-            to: `/users/${params.id}/posts`,
-            active: true,
-          },
-          {
-            label: 'Todo',
-            to: `/users/${params.id}/todos`,
-          },
-        ]}
-        addBtn
-        btnAction={() => {
-          navigate(`/users/${params.id}/createPost`);
-        }}
-      />
+      <Header list={menuList} />
       {isProcessing ? (
         <h2>Loading...</h2>
       ) : (

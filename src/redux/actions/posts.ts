@@ -1,4 +1,4 @@
-import { PostPayloadType, CommentType } from './../constants/posts';
+import { PostPayloadProps, CommentType } from './../constants/posts';
 import {
   getPostsList as getPostsListApi,
   createPost as createPostApi,
@@ -18,7 +18,7 @@ export const getPostsList = (id: string) => async (dispatch: AppDispatch) => {
 
 export const createPost = async (
   id: string,
-  payload: PostPayloadType,
+  payload: PostPayloadProps,
   callback: () => void
 ) => {
   try {
