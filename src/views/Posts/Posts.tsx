@@ -7,10 +7,12 @@ import PostCard from '../../components/PostCard/PostCard';
 import { getPostsList } from '../../redux/actions/posts';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
+type GetUserDetails = () => Promise<void>;
+
 const Posts = () => {
   const params = useParams();
-  const [username, setUsername] = useState<string>('');
-  const [userEmail, setEmail] = useState<string>('');
+  const [username, setUsername] = useState('');
+  const [userEmail, setEmail] = useState('');
   const navigate = useNavigate();
   const { info, isProcessing } = useAppSelector((state) => state.postReducer);
   const dispatch = useAppDispatch();
@@ -26,7 +28,7 @@ const Posts = () => {
     },
   ];
 
-  const getUserDetails = async () => {
+  const getUserDetails: GetUserDetails = async () => {
     if (params.id) {
       const res = await getUser(params.id);
       setEmail(res.data.email);

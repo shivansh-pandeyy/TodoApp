@@ -42,7 +42,7 @@ const postReducer = (state = INITIAL_STATE, action: ActionDef) => {
       case ActionDefTypes.ADD_COMMENT_TO_POST:
         draftState.info.filter((post) => {
           if (post.id === payload.postId) {
-            if (post.comments && post.comments.length > 0) {
+            if (!!post?.comments?.length) {
               post.comments.push(payload);
             } else {
               post.comments = [payload];

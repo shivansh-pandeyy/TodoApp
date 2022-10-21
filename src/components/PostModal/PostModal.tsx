@@ -23,6 +23,16 @@ const PostModal = ({
 }: PostModalProps) => {
   const [comment, setComment] = useState<string>('');
   const dispatch = useAppDispatch();
+  const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: { xs: 270, sm: 400, md: 700 },
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+  };
 
   const addComment = () => {
     console.log(cUser, cEmail);
@@ -40,18 +50,7 @@ const PostModal = ({
 
   return (
     <Modal open={open} onClose={handleClose}>
-      <Box
-        sx={{
-          position: 'absolute' as 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: { xs: 270, sm: 400, md: 700 },
-          bgcolor: 'background.paper',
-          boxShadow: 24,
-          p: 4,
-        }}
-      >
+      <Box sx={style}>
         <Typography variant="h5" my={3}>
           {post.title}
         </Typography>

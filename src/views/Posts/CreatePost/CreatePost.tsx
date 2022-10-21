@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router';
 import * as Yup from 'yup';
 import Input from '../../../components/Input/Input';
 import { createPost } from '../../../redux/actions/posts';
+import { PostPayloadProps } from '../../../redux/constants/posts';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('This field is required'),
@@ -23,7 +24,7 @@ const CreatePost = () => {
     validateOnChange: false,
     validateOnBlur: false,
     validationSchema: validationSchema,
-    onSubmit: (val) => {
+    onSubmit: (val: PostPayloadProps) => {
       if (params.id) {
         createPost(params.id, val, () => navigate(`/users/${params.id}/posts`));
       }

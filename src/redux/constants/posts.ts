@@ -17,7 +17,7 @@ export interface PostsInitialState {
   info: PostObj[];
 }
 
-export interface PostPayloadType {
+export interface PostPayloadProps {
   title: string;
   body: string;
 }
