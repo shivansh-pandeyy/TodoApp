@@ -14,6 +14,17 @@ const Posts = () => {
   const navigate = useNavigate();
   const { info, isProcessing } = useAppSelector((state) => state.postReducer);
   const dispatch = useAppDispatch();
+  const menuList = [
+    {
+      label: 'Posts',
+      to: `/users/${params.id}/posts`,
+      active: true,
+    },
+    {
+      label: 'Todo',
+      to: `/users/${params.id}/todos`,
+    },
+  ];
 
   const getUserDetails = async () => {
     if (params.id) {
@@ -39,23 +50,7 @@ const Posts = () => {
         padding: 2,
       }}
     >
-      <Header
-        list={[
-          {
-            label: 'Posts',
-            to: `/users/${params.id}/posts`,
-            active: true,
-          },
-          {
-            label: 'Todo',
-            to: `/users/${params.id}/todos`,
-          },
-        ]}
-        addBtn
-        btnAction={() => {
-          navigate(`/users/${params.id}/createPost`);
-        }}
-      />
+      <Header list={menuList} />
       {isProcessing ? (
         <h2>Loading...</h2>
       ) : (
