@@ -39,9 +39,8 @@ const Users = (): JSX.Element => {
             alignContent="center"
             flexWrap="wrap"
           >
-            {info &&
-              info.length > 0 &&
-              info.map((item) => {
+            {!!info?.length &&
+              info?.map((item) => {
                 return (
                   <CardComponent
                     key={item.id}
@@ -56,6 +55,11 @@ const Users = (): JSX.Element => {
                         },
                       },
                     ]}
+                    onClick={() =>
+                      navigate(`/users/${item.id}/posts`, {
+                        state: { name: item.name },
+                      })
+                    }
                   />
                 );
               })}
