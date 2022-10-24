@@ -15,7 +15,9 @@ const Posts = () => {
   const [username, setUsername] = useState('');
   const [userEmail, setEmail] = useState('');
   const navigate = useNavigate();
-  const { info, isProcessing } = useAppSelector((state) => state.postReducer);
+  const { info, isProcessing, runEffect } = useAppSelector(
+    (state) => state.postReducer
+  );
   const { ref, inView } = useInView();
   const dispatch = useAppDispatch();
   const menuList = [
@@ -39,7 +41,7 @@ const Posts = () => {
   };
 
   useEffect(() => {
-    if (params.id) {
+    if (params.id && runEffect) {
       dispatch(getPostsList(params.id));
     }
     getUserDetails();

@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import Input from '../../../components/Input/Input';
 import { createPost } from '../../../redux/actions/posts';
 import { PostPayloadProps } from '../../../redux/constants/posts';
+import { useAppDispatch } from '../../../redux/hooks';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('This field is required'),
@@ -15,6 +16,7 @@ const validationSchema = Yup.object().shape({
 const CreatePost = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const dispatch = useAppDispatch();
   const initialValues = {
     title: '',
     body: '',
@@ -26,7 +28,11 @@ const CreatePost = () => {
     validationSchema: validationSchema,
     onSubmit: (val: PostPayloadProps) => {
       if (params.id) {
-        createPost(params.id, val, () => navigate(`/users/${params.id}/posts`));
+        dispatch(
+          createPost(params.id, val, () =>
+            navigate(`/users/${params.id}/posts`)
+          )
+        );
       }
     },
   });

@@ -9,7 +9,9 @@ import { getUsersList } from '../../redux/actions/users';
 import { useInView } from 'react-intersection-observer';
 
 const Users = (): JSX.Element => {
-  const { isProcessing, info } = useAppSelector((state) => state.userReducer);
+  const { isProcessing, info, runEffect } = useAppSelector(
+    (state) => state.userReducer
+  );
   const { ref, inView } = useInView();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -22,7 +24,9 @@ const Users = (): JSX.Element => {
   };
 
   useEffect(() => {
-    dispatch(getUsersList());
+    if (runEffect) {
+      dispatch(getUsersList());
+    }
   }, []);
 
   useEffect(() => {
