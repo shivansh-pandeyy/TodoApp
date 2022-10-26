@@ -1,6 +1,8 @@
+import { Button, IconButton } from '@mui/material';
 import { Box } from '@mui/system';
 import { Link } from 'react-router-dom';
 import './Header.scss';
+import AddIcon from '@mui/icons-material/Add';
 
 interface TabList {
   label: string;
@@ -10,9 +12,11 @@ interface TabList {
 
 interface HeaderPropsType {
   list: TabList[];
+  addBtn?: boolean;
+  btnAction?: () => void;
 }
 
-const Header = ({ list }: HeaderPropsType): JSX.Element => {
+const Header = ({ list, addBtn, btnAction }: HeaderPropsType): JSX.Element => {
   return (
     <Box
       sx={{
@@ -35,6 +39,16 @@ const Header = ({ list }: HeaderPropsType): JSX.Element => {
             </Box>
           );
         })}
+      {addBtn && (
+        <Button
+          onClick={btnAction}
+          sx={{ borderRadius: 60, marginLeft: 10 }}
+          variant="outlined"
+          startIcon={<AddIcon />}
+        >
+          Add
+        </Button>
+      )}
     </Box>
   );
 };

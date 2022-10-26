@@ -10,9 +10,9 @@ interface InputProps {
   label: string;
   id: string;
   size?: InputPropSize;
-  width?: number;
+  width?: number | string;
   onChange: (e: any) => void;
-  onBlur: (e: any) => void;
+  onBlur?: (e: any) => void;
   value?: string | number;
   error?: boolean;
   errorText?: string;

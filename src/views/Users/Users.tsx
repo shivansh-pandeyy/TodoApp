@@ -55,11 +55,7 @@ const Users = (): JSX.Element => {
                         },
                       },
                     ]}
-                    onClick={() =>
-                      navigate(`/users/${item.id}/posts`, {
-                        state: { name: item.name },
-                      })
-                    }
+                    onClick={() => navigate(`/users/${item.id}/posts`)}
                   />
                 );
               })}
