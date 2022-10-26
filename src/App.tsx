@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Users from './views/Users/Users';
 import CreateUser from './views/Users/CreateUser/CreateUser';

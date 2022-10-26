@@ -52,6 +52,7 @@ const Input = ({
         helperText={errorText}
         sx={{
           width: width,
+          backgroundColor: '#F4F9F9',
         }}
         id={id}
         type="text"

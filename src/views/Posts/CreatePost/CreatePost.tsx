@@ -45,7 +45,12 @@ const CreatePost = () => {
         alignItems: 'center',
       }}
     >
-      <Typography variant="h3">Create Post</Typography>
+      <Typography
+        sx={{ backgroundColor: '#A4EBF3', width: '100%', textAlign: 'center', padding: 2 }}
+        variant="h3"
+      >
+        Create Post
+      </Typography>
 
       <Box
         mt={3}
