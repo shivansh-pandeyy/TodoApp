@@ -63,7 +63,16 @@ const EditUser = (): JSX.Element => {
         alignItems: 'center',
       }}
     >
-      <Typography mb={5} variant="h3">
+      <Typography
+        sx={{
+          backgroundColor: '#A4EBF3',
+          width: '100%',
+          textAlign: 'center',
+          padding: 2,
+        }}
+        mb={5}
+        variant="h3"
+      >
         Edit User
       </Typography>
 
