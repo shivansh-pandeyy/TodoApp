@@ -16,18 +16,17 @@ export const getPostsList = (id: string) => async (dispatch: AppDispatch) => {
   }
 };
 
-export const createPost = async (
-  id: string,
-  payload: PostPayloadProps,
-  callback: () => void
-) => {
-  try {
-    await createPostApi(id, payload);
-    callback();
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const createPost =
+  (id: string, payload: PostPayloadProps, callback: () => void) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      await createPostApi(id, payload);
+      dispatch({ type: ActionDefTypes.CREATE_POST, payload: payload });
+      callback();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const addCommentToPost =
   (payload: CommentType) => async (dispatch: AppDispatch) => {

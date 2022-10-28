@@ -9,6 +9,7 @@ import {
 const INITIAL_STATE: PostsInitialState = {
   isProcessing: false,
   info: [],
+  runEffect: true,
 };
 
 interface ActionPostsListStart {
@@ -25,8 +26,16 @@ interface ActionAddComment {
   type: ActionDefTypes.ADD_COMMENT_TO_POST;
   payload: CommentType;
 }
+interface ActionCreatePost {
+  type: ActionDefTypes.CREATE_POST;
+  payload: PostObj;
+}
 
-type ActionDef = ActionPostsListStart | ActionPostsListEnd | ActionAddComment;
+type ActionDef =
+  | ActionPostsListStart
+  | ActionPostsListEnd
+  | ActionAddComment
+  | ActionCreatePost;
 
 const postReducer = (state = INITIAL_STATE, action: ActionDef) => {
   return produce(state, (draftState) => {
@@ -37,7 +46,7 @@ const postReducer = (state = INITIAL_STATE, action: ActionDef) => {
         break;
       case ActionDefTypes.GET_POSTS_LIST:
         draftState.isProcessing = false;
-        draftState.info = payload;
+        draftState.info = [...draftState.info, ...payload];
         break;
       case ActionDefTypes.ADD_COMMENT_TO_POST:
         draftState.info.filter((post) => {
@@ -49,6 +58,10 @@ const postReducer = (state = INITIAL_STATE, action: ActionDef) => {
             }
           }
         });
+        break;
+      case ActionDefTypes.CREATE_POST:
+        draftState.runEffect = false;
+        draftState.info.unshift({ ...payload, id: Date.now() });
         break;
       default:
         break;

@@ -7,13 +7,16 @@ import UserDef from '../../helpers/userDef';
 import { ActionDefTypes } from '../constants/user';
 import { AppDispatch } from '../store';
 
-export const addUser = async (payload: UserDef) => {
-  try {
-    await addUserApi(payload);
-  } catch (e) {
-    console.log(e);
-  }
-};
+export const addUser =
+  (payload: UserDef, callback: () => void) => async (dispatch: AppDispatch) => {
+    try {
+      await addUserApi(payload);
+      dispatch({ type: ActionDefTypes.CREATE_USER, payload: payload });
+      callback();
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
 export const getUsersList = () => async (dispatch: AppDispatch) => {
   try {

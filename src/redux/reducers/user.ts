@@ -8,6 +8,7 @@ import {
 const INITIAL_STATE: UserListInitialStateType = {
   isProcessing: false,
   info: [],
+  runEffect: true,
 };
 
 interface ActionUserListStart {
@@ -20,7 +21,12 @@ interface ActionUserListEnd {
   payload: UserListEndObj[];
 }
 
-type ActionDef = ActionUserListStart | ActionUserListEnd;
+interface ActionCreateUser {
+  type: ActionDefTypes.CREATE_USER;
+  payload: UserListEndObj;
+}
+
+type ActionDef = ActionUserListStart | ActionUserListEnd | ActionCreateUser;
 
 const userReducer = (state = INITIAL_STATE, action: ActionDef) => {
   return produce(state, (draftState) => {
@@ -31,7 +37,11 @@ const userReducer = (state = INITIAL_STATE, action: ActionDef) => {
         break;
       case ActionDefTypes.GET_USERS_LIST:
         draftState.isProcessing = false;
-        draftState.info = payload;
+        draftState.info = [...draftState.info, ...payload];
+        break;
+      case ActionDefTypes.CREATE_USER:
+        draftState.runEffect = false;
+        draftState.info.unshift({ ...payload, id: Date.now() });
         break;
       default:
         break;

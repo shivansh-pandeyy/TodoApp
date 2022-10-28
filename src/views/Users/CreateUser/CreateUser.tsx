@@ -5,9 +5,11 @@ import { getIn, useFormik } from 'formik';
 import { addUser } from '../../../redux/actions/users';
 import { FormValues, userValidation, InputConfig } from './config';
 import { useNavigate } from 'react-router';
+import { useAppDispatch } from '../../../redux/hooks';
 
 const CreateUser = (): JSX.Element => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const initialValues: FormValues = {
     name: '',
     username: '',
@@ -24,9 +26,8 @@ const CreateUser = (): JSX.Element => {
     validateOnBlur: false,
     validateOnChange: false,
     validationSchema: userValidation,
-    onSubmit: (val) => {
-      addUser(val);
-      navigate('/');
+    onSubmit: (val: FormValues) => {
+      dispatch(addUser(val, () => navigate('/')));
     },
   });
 
