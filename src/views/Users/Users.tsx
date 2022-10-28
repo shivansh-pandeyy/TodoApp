@@ -44,15 +44,7 @@ const Users = (): JSX.Element => {
         alignItems: 'center',
       }}
     >
-      <Typography
-        sx={{
-          backgroundColor: '#A4EBF3',
-          width: '100%',
-          padding: 2,
-        }}
-        variant="h3"
-        align="center"
-      >
+      <Typography className="header" variant="h3" align="center">
         Users
       </Typography>
       <Stack

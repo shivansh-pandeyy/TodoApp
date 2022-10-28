@@ -53,7 +53,7 @@ const CardComponent = ({
   };
 
   return (
-    <Card sx={{ ...sx, backgroundColor: '#F4F9F9' }}>
+    <Card sx={{ ...sx }}>
       {(title || showMenu) && (
         <CardHeader
           action={
