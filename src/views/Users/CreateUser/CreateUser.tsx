@@ -41,7 +41,7 @@ const CreateUser = (): JSX.Element => {
         alignItems: 'center',
       }}
     >
-      <Typography mb={5} variant="h3">
+      <Typography className="header" mb={5} variant="h3">
         Create User
       </Typography>
 

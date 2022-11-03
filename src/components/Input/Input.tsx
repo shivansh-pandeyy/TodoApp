@@ -1,5 +1,6 @@
 import { Box, TextField, Typography } from '@mui/material';
 import React from 'react';
+import './Input.scss';
 
 enum InputPropSize {
   small = 'small',
@@ -50,6 +51,7 @@ const Input = ({
       <TextField
         error={error && true}
         helperText={errorText}
+        InputProps={{ className: 'input-bg' }}
         sx={{
           width: width,
         }}

@@ -12,7 +12,7 @@ import {
 import React, { useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Box } from '@mui/system';
-import './CardComponent.css';
+import './CardComponent.scss';
 
 export interface MenuAction {
   name: string;
@@ -53,7 +53,7 @@ const CardComponent = ({
   };
 
   return (
-    <Card sx={sx}>
+    <Card sx={{ ...sx }}>
       {(title || showMenu) && (
         <CardHeader
           action={

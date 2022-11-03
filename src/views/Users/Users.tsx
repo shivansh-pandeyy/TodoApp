@@ -44,7 +44,7 @@ const Users = (): JSX.Element => {
         alignItems: 'center',
       }}
     >
-      <Typography variant="h3" align="center">
+      <Typography className="header" variant="h3" align="center">
         Users
       </Typography>
       <Stack

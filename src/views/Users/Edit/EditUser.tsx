@@ -63,7 +63,7 @@ const EditUser = (): JSX.Element => {
         alignItems: 'center',
       }}
     >
-      <Typography mb={5} variant="h3">
+      <Typography className="header" mb={5} variant="h3">
         Edit User
       </Typography>
 

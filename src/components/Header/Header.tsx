@@ -24,6 +24,7 @@ const Header = ({ list, addBtn, btnAction }: HeaderPropsType): JSX.Element => {
         flexWrap: 'wrap',
         alignItems: 'center',
         gap: 2,
+        padding: 2
       }}
     >
       {list.length > 0 &&

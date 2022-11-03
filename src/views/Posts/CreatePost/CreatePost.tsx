@@ -7,6 +7,7 @@ import Input from '../../../components/Input/Input';
 import { createPost } from '../../../redux/actions/posts';
 import { PostPayloadProps } from '../../../redux/constants/posts';
 import { useAppDispatch } from '../../../redux/hooks';
+import '../../../scss/styles.scss';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('This field is required'),
@@ -45,7 +46,9 @@ const CreatePost = (): JSX.Element => {
         alignItems: 'center',
       }}
     >
-      <Typography variant="h3">Create Post</Typography>
+      <Typography className="header" variant="h3">
+        Create Post
+      </Typography>
 
       <Box
         mt={3}
