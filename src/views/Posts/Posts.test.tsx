@@ -2,7 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from '../../redux/store';
-import Users from './Users';
+import Posts from './Posts';
+import { MemoryRouter, Route, Routes } from 'react-router';
 
 beforeEach(() => {
   const mockIntersectionObserver = jest.fn();
@@ -14,29 +15,30 @@ beforeEach(() => {
   window.IntersectionObserver = mockIntersectionObserver;
 });
 
-describe('Users', () => {
-  test('check users heading exists', () => {
+describe('Posts', () => {
+  test('posts header displays', () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <Users />
+          <Posts />
         </BrowserRouter>
       </Provider>
     );
-
-    expect(screen.getByText('Users')).toBeInTheDocument();
+    expect(screen.getByTestId('AddIcon')).toBeInTheDocument();
   });
 
-  test('check users list', async () => {
+  test('fetches posts from API and displays them', async () => {
     render(
       <Provider store={store}>
-        <BrowserRouter>
-          <Users />
-        </BrowserRouter>
+        <MemoryRouter initialEntries={['/users/1/posts']}>
+          <Routes>
+            <Route path="/users/:id/posts" element={<Posts />} />
+          </Routes>
+        </MemoryRouter>
       </Provider>
     );
 
-    const listItemElements = await screen.findAllByLabelText('settings');
-    expect(listItemElements).not.toHaveLength(0);
+    const postElements = await screen.findAllByLabelText('modal');
+    expect(postElements).not.toHaveLength(0);
   });
 });

@@ -87,7 +87,7 @@ const CardComponent = ({
           title={title}
         />
       )}
-      <Box onClick={onClick}>
+      <Box onClick={onClick} aria-label="modal">
         {image && (
           <CardMedia
             component="img"
