@@ -52,6 +52,7 @@ const Input = ({
         error={error && true}
         helperText={errorText}
         InputProps={{ className: 'input-bg' }}
+        inputProps={{ 'aria-label': id }}
         sx={{
           width: width,
         }}

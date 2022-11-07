@@ -6,8 +6,13 @@ import { addUser } from '../../../redux/actions/users';
 import { FormValues, userValidation, InputConfig } from './config';
 import { useNavigate } from 'react-router';
 import { useAppDispatch } from '../../../redux/hooks';
+import UserDef from '../../../helpers/userDef';
 
-const CreateUser = (): JSX.Element => {
+interface CreateUserProps {
+  onSubmitVal?: (val: UserDef) => void;
+}
+
+const CreateUser = ({ onSubmitVal }: CreateUserProps): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const initialValues: FormValues = {
@@ -28,6 +33,9 @@ const CreateUser = (): JSX.Element => {
     validationSchema: userValidation,
     onSubmit: (val: FormValues) => {
       dispatch(addUser(val, () => navigate('/')));
+      if (onSubmitVal) {
+        onSubmitVal(val);
+      }
     },
   });
 
